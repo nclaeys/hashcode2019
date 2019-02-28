@@ -12,7 +12,8 @@ public class OutputFileWriterTest {
 
     @Test
     public void givenSlideWithOneId() throws IOException {
-        final Slide slide = new Slide(1);
+        final Photo photo = new Photo(1, "H", Collections.<String>emptyList());
+        final Slide slide = new Slide(photo);
 
         final OutputFileWriter writer = new OutputFileWriter(Collections.singletonList(slide));
         writer.write();
@@ -20,7 +21,9 @@ public class OutputFileWriterTest {
 
     @Test
     public void givenSlideWithTwoIds() throws IOException {
-        final Slide slide = new Slide(1, 2);
+        final Photo photo = new Photo(1, "H", Collections.<String>emptyList());
+        final Photo photo2 = new Photo(2, "H", Collections.<String>emptyList());
+        final Slide slide = new Slide(photo, photo2);
 
         final OutputFileWriter writer = new OutputFileWriter(Collections.singletonList(slide));
         writer.write();
@@ -28,10 +31,17 @@ public class OutputFileWriterTest {
 
     @Test
     public void givenMultipleSlides() throws IOException {
-        final Slide slideOne = new Slide(1);
-        final Slide slideTwo = new Slide(2, 3);
-        final Slide slideThree = new Slide(4);
-        final Slide slideFour = new Slide(5, 6);
+        final Photo photo = new Photo(1, "H", Collections.<String>emptyList());
+        final Photo photo2 = new Photo(2, "V", Collections.<String>emptyList());
+        final Photo photo3 = new Photo(3, "V", Collections.<String>emptyList());
+        final Photo photo4 = new Photo(4, "V", Collections.<String>emptyList());
+        final Photo photo5 = new Photo(5, "V", Collections.<String>emptyList());
+        final Photo photo6 = new Photo(6, "V", Collections.<String>emptyList());
+
+        final Slide slideOne = new Slide(photo);
+        final Slide slideTwo = new Slide(photo2, photo3);
+        final Slide slideThree = new Slide(photo4);
+        final Slide slideFour = new Slide(photo5, photo6);
 
         final List<Slide> slides = Arrays.asList(slideOne, slideTwo, slideThree, slideFour);
 

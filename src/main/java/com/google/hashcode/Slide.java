@@ -4,12 +4,15 @@ public class Slide {
 
     private final int[] ids;
 
-    public Slide(int id) {
-        ids = new int[]{id};
+    public Slide(final Photo photo) {
+        ids = new int[]{photo.getId()};
     }
 
-    public Slide(int first, int second) {
-        ids = new int[]{first, second};
+    public Slide(final Photo first, final Photo second) {
+        if (first.isHorizontal() || second.isHorizontal()){
+            throw new HorizontalPhotoException();
+        }
+        ids = new int[]{first.getId(), second.getId()};
     }
 
     @Override
@@ -20,5 +23,8 @@ public class Slide {
         }
 
         return output.toString();
+    }
+
+    public class HorizontalPhotoException extends RuntimeException {
     }
 }
