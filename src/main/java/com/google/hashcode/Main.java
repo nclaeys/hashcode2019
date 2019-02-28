@@ -1,5 +1,6 @@
 package com.google.hashcode;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,9 +14,11 @@ public class Main {
     private static final String D = "input/d_pet_pictures.txt";
     private static final String E = "input/e_shiny_selfies.txt";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         List<Photo> photos = new FileInputReader().parse(A);
-        List<Photo> results = calculateAlgorithm(photos);
+        List<Slide> results = calculateAlgorithm(photos).stream()
+                .map(photo -> new Slide(photo.getId())).collect(Collectors.toList());
+        new OutputFileWriter(results).write();
         System.out.println(results);
     }
 

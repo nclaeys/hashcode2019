@@ -20,6 +20,7 @@ public class OutputFileWriter {
         }
 
         final BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt"));
+        writer.write("" + slides.size() + "\n");
         writer.write(stringBuilder.toString());
         writer.close();
     }
