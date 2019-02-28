@@ -2,9 +2,8 @@ package com.google.hashcode;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -14,11 +13,22 @@ public class Main {
     private static final String D = "input/d_pet_pictures.txt";
     private static final String E = "input/e_shiny_selfies.txt";
 
+    private static final List<String> inputFiles = Arrays.asList(A, B, C, D, E);
+
     public static void main(String[] args) throws IOException {
-        List<Photo> photos = new FileInputReader().parse(A);
+        int counter = 0;
+
+        for (String inputFile : inputFiles) {
+            executeForInput(inputFile, "output_" + counter + ".txt");
+            counter++;
+        }
+    }
+
+    private static void executeForInput(final String inputFile, final String outputFile) throws IOException {
+        List<Photo> photos = new FileInputReader().parse(inputFile);
         List<Slide> results = calculateAlgorithm(photos).stream()
-                .map(photo -> new Slide(photo.getId())).collect(Collectors.toList());
-        new OutputFileWriter(results).write();
+                .map(photo -> new Slide(photo)).collect(Collectors.toList());
+        new OutputFileWriter(results).write(outputFile);
         System.out.println(results);
     }
 

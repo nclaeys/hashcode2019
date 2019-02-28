@@ -16,7 +16,7 @@ public class OutputFileWriterTest {
         final Slide slide = new Slide(photo);
 
         final OutputFileWriter writer = new OutputFileWriter(Collections.singletonList(slide));
-        writer.write();
+        writer.write("output.txt");
     }
 
     @Test
@@ -26,7 +26,7 @@ public class OutputFileWriterTest {
         final Slide slide = new Slide(photo, photo2);
 
         final OutputFileWriter writer = new OutputFileWriter(Collections.singletonList(slide));
-        writer.write();
+        writer.write("output.txt");
     }
 
     @Test
@@ -46,6 +46,6 @@ public class OutputFileWriterTest {
         final List<Slide> slides = Arrays.asList(slideOne, slideTwo, slideThree, slideFour);
 
         final OutputFileWriter writer = new OutputFileWriter(slides);
-        writer.write();
+        writer.write("output.txt");
     }
 }

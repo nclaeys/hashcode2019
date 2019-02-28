@@ -13,13 +13,13 @@ public class OutputFileWriter {
         this.slides = slides;
     }
 
-    public void write() throws IOException {
+    public void write(final String outputFileName) throws IOException {
         final StringBuilder stringBuilder = new StringBuilder();
         for (Slide slide : slides) {
             stringBuilder.append(slide.toString()).append("\n");
         }
 
-        final BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt"));
+        final BufferedWriter writer = new BufferedWriter(new FileWriter(outputFileName));
         writer.write("" + slides.size() + "\n");
         writer.write(stringBuilder.toString());
         writer.close();
