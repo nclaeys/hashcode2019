@@ -24,14 +24,13 @@ public class Main {
 
     private static void executeForInput(final String inputFile, final String outputFile) throws IOException {
         List<Photo> photos = new FileInputReader().parse(inputFile);
-        List<Slide> results = new DummyCalculationStrategy().calculateAlgorithm(photos).stream()
-                .map(photo -> new Slide(photo)).collect(Collectors.toList());
+        List<Slide> results = new DummyCalculationStrategy().calculateAlgorithm(photos);
         new OutputFileWriter(results).write(outputFile);
         System.out.println(results);
     }
 
 
-    private static Integer calculateInterest(Photo photo1, Photo photo2) {
+    public static Integer calculateInterest(Photo photo1, Photo photo2) {
         List<String> tagsPhoto1 = photo1.getTags();
         List<String> tagsPhoto2 = photo2.getTags();
         List<String> common = tagsPhoto1.stream().filter(tagsPhoto2::contains).collect(Collectors.toList());
